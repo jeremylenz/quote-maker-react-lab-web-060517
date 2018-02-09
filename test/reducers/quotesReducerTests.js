@@ -1,11 +1,13 @@
 import uuid from 'uuid';
 import { expect } from 'chai';
-import reducer from '../../src/reducers/quotes';
+import { quotes } from '../../src/reducers/quotes';
+
+let reducer = quotes;
 
 describe('Quotes Reducer', () => {
 
   it('should return the initial state', () => {
-    expect(reducer(undefined, {})).to.deep.equal([]);
+    expect(reducer(undefined, {})).to.deep.equal({quotes: []});
   });
 
   it('should handle ADD_QUOTE', () => {
@@ -19,7 +21,7 @@ describe('Quotes Reducer', () => {
     expect(reducer(undefined, {
       type: 'ADD_QUOTE',
       quote
-    })).to.deep.equal([quote]);
+    })).to.deep.equal({quotes: [quote]});
   });
 
   it('should handle REMOVE_QUOTE', () => {
@@ -63,9 +65,9 @@ describe('Quotes Reducer', () => {
       }
     ];
 
-    expect(reducer(initialState, { 
-      type: 'UPVOTE_QUOTE', 
-      quoteId: firstId 
+    expect(reducer(initialState, {
+      type: 'UPVOTE_QUOTE',
+      quoteId: firstId
     })).to.deep.equal(
       [
         {
@@ -89,9 +91,9 @@ describe('Quotes Reducer', () => {
       }
     ];
 
-    expect(reducer(initialState, { 
-      type: 'DOWNVOTE_QUOTE', 
-      quoteId: firstId 
+    expect(reducer(initialState, {
+      type: 'DOWNVOTE_QUOTE',
+      quoteId: firstId
     })).to.deep.equal(
       [
         {
@@ -115,9 +117,9 @@ describe('Quotes Reducer', () => {
       }
     ];
 
-    expect(reducer(initialState, { 
-      type: 'DOWNVOTE_QUOTE', 
-      quoteId: firstId 
+    expect(reducer(initialState, {
+      type: 'DOWNVOTE_QUOTE',
+      quoteId: firstId
     })).to.deep.equal(
       [
         {
